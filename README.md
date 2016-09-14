@@ -1,7 +1,6 @@
-# LEDbar Arduino library
+#LEDbar Arduino library
 A High level library for use with the Sure Electronics DE-DP011 40 segment LED bar, or any other 74HC164 based LED bar. This library makes it easy to interface this LED bar into your project. Make sure to check out [the examples](https://github.com/MCUdude/LEDbar/tree/master/examples) for getting the most out of this library! 
-
-<br/> <br/>
+<br/>
 <img src="http://i.imgur.com/fAAerl4.jpg" width="400"> <img src="http://i.imgur.com/htIPYlU.jpg" width="400">
 
 ##Supported microcontrollers
@@ -19,7 +18,7 @@ To open the library manager, in the IDE click on `Sketch` -> `Include Library` -
 Then search for <b>LEDbar</b>.
 
 ##About the LED bar
-This LED bar was previously maufactured and sold by [Sure Electronics](http://store3.sure-electronics.com), and the user manual can be [downloaded here](https://github.com/MCUdude/LEDbar/blob/master/DE-DP011_Users_guide.pdf). The LED bar got 40 LEDs that's controlled by five [74HC164 serial-in parallel-out shift registers](http://www.nxp.com/documents/data_sheet/74HC_HCT164.pdf). The board also got a dim input, that can be pulsed in order to dim the LEDs.
+This LED bar was previously maufactured and sold by [Sure Electronics](http://store3.sure-electronics.com), and the user manual can be [downloaded here](https://github.com/MCUdude/LEDbar/raw/master/DE-DP011_Users_guide.pdf). The LED bar got 40 LEDs that's controlled by five [74HC164 serial-in parallel-out shift registers](http://www.nxp.com/documents/data_sheet/74HC_HCT164.pdf). The board also got a dim input, that can be pulsed in order to dim the LEDs.
 <br/>
 As the user manual states; the clock frequency can be no more than 10 MHz, and no more than 4 LED bars should be daisy chained to precent signaling issues.
 <br/>
@@ -27,8 +26,9 @@ As the user manual states; the clock frequency can be no more than 10 MHz, and n
 ##Minimal setup
 Here's a minimal setup that will get you up and running. Note that this setup includes the BUSY pin.
 <br/> <br/>
-<img src="http://i.imgur.com/e9aMiJV.png" width="500">
-<br/> <br/>
+<img src="http://i.imgur.com/e9aMiJV.png" width="430">   <img src="http://i.imgur.com/hEBoSiW.jpg" width="430">
+
+
 
 ##Reference
 
@@ -42,4 +42,26 @@ LEDbar(uint8_t clk, uint8_t data);
 ```
 
 ###Methods
+``` c++
+// Pass the number of LEDs
+void begin(uint8_t numberOfLEDs);
+
+// Clear the LED bar
+void clear();
+
+// Turn on all LEDs
+void all();
+
+// Adjust the brightness (0 - 255)
+void brightness(uint8_t level);
+
+// Set n dots from position x 
+void setDots(uint8_t position, uint8_t dots);
+
+// Turn on n leds from start position. Use negative numbers to start from the other end
+void setLevel(int8_t level);
+
+// Set a repeating pattern, 8 bit standard
+void setPattern(uint64_t pattern, uint8_t length = 8);
+```
 
